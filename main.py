@@ -23,8 +23,11 @@ from omni_anomaly.utils import get_data_dim, get_data, save_z
 
 class ExpConfig(Config):
     # dataset configuration
-    dataset = "machine-1-1"
+    #dataset = "machine-1-1"
+    dataset = "account-1-1"
+
     x_dim = get_data_dim(dataset)
+ 
 
     # model architecture configuration
     use_connected_z_q = True
@@ -38,10 +41,11 @@ class ExpConfig(Config):
     dense_dim = 500
     posterior_flow_type = 'nf'  # 'nf' or None
     nf_layers = 20  # for nf
-    max_epoch = 10
+    max_epoch = 5
+    #20
     train_start = 0
     max_train_size = None  # `None` means full train set
-    batch_size = 50
+    batch_size = 2 #50
     l2_reg = 0.0001
     initial_lr = 0.001
     lr_anneal_factor = 0.5
@@ -51,7 +55,7 @@ class ExpConfig(Config):
 
     # evaluation parameters
     test_n_z = 1
-    test_batch_size = 50
+    test_batch_size = 2 #50
     test_start = 0
     max_test_size = None  # `None` means full test set
 
@@ -207,6 +211,7 @@ if __name__ == '__main__':
     register_config_arguments(config, arg_parser)
     arg_parser.parse_args(sys.argv[1:])
     config.x_dim = get_data_dim(config.dataset)
+ 
 
     print_with_title('Configurations', pformat(config.to_dict()), after='\n')
 
